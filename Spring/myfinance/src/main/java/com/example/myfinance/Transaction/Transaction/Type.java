@@ -1,4 +1,4 @@
-package com.example.myfinance.Transaction;
+package com.example.myfinance.Transaction.Transaction;
 
 public enum Type {
     PURCHASE,

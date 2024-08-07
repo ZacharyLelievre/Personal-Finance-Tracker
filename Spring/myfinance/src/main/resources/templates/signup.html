@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="button"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="button"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<h1>Sign Up</h1>
+<div th:if="${param.error}" class="error">
+    There was an error with your sign-up.
+</div>
+<form id="signupForm">
+    <div>
+        <input type="text" id="username" name="username" placeholder="Username" required/>
+    </div>
+    <div>
+        <input type="password" id="password" name="password" placeholder="Password" required/>
+    </div>
+    <div>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required/>
+    </div>
+    <input type="button" value="Sign up" onclick="submitForm()" />
+</form>
+
+<script>
+    function submitForm() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        fetch('/req/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password,
+                confirmPassword: confirmPassword
+            })
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Redirect to login page on successful signup
+                    window.location.href = '/login';
+                } else {
+                    // Handle errors here
+                    alert('There was an error with your sign-up.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error with your sign-up.');
+            });
+    }
+</script>
+</body>
+</html>

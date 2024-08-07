@@ -1,4 +1,4 @@
-package com.example.myfinance.Transaction;
+package com.example.myfinance.Transaction.Transaction;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
