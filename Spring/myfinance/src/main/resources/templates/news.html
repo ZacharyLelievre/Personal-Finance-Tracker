@@ -86,11 +86,10 @@
 
 
 <div class="content"></div>
-
+<script src="config.js"></script>
 <script>
-    let APIkey = "a9f10b414574456f9f4e6520e2bd9753";
 
-    fetch(`https://newsapi.org/v2/everything?q=keyword&apiKey=${APIkey}`)
+    fetch(`https://newsapi.org/v2/everything?q=keyword&apiKey=${config.API_KEY}`)
         .then(response => response.json())
         .then(data => {
             let words = ["Google", "data"];
