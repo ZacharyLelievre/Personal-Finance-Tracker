@@ -1,7 +1,6 @@
 package com.example.myfinance.Transaction.Customer;
 
 
-import com.example.myfinance.Transaction.Transaction.Transactions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

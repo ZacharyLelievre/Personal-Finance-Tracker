@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,20 +23,29 @@ public class TransactionService {
 
 
 
+
     @GetMapping
-    public List<Transactions> getInfos(@RequestParam(required = false) Date minDate,
-                                       @RequestParam(required = false) Date maxDate) {
-        if (minDate == null && maxDate == null) {
-            return transactionRepository.findAll();
+    public List<Transactions> getInfos(@RequestParam(required = false) String minDate,
+                                       @RequestParam(required = false) String maxDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate minLocalDate = null;
+        LocalDate maxLocalDate = null;
+
+
+        if (minDate != null) {
+            minLocalDate = LocalDate.parse(minDate, formatter);
+        }
+        if (maxDate != null) {
+            maxLocalDate = LocalDate.parse(maxDate, formatter);
         }
 
-        LocalDate minLocalDate = minDate != null ? minDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate() : null;
-        LocalDate maxLocalDate = maxDate != null ? maxDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate() : null;
+        LocalDate finalMinLocalDate = minLocalDate;
+        LocalDate finalMaxLocalDate = maxLocalDate;
 
         return transactionRepository.findAll().stream()
-                .filter(e -> (minLocalDate == null || e.getTransactionDate().isAfter(minLocalDate)) &&
-                        (maxLocalDate == null || e.getTransactionDate().isBefore(maxLocalDate)))
-                .sorted()
+                .filter(e -> (finalMinLocalDate == null || e.getTransactionDate().isAfter(finalMinLocalDate)) &&
+                        (finalMaxLocalDate == null || e.getTransactionDate().isBefore(finalMaxLocalDate)))
+                .sorted(Comparator.comparing(Transactions::getTransactionDate))
                 .collect(Collectors.toList());
     }
 

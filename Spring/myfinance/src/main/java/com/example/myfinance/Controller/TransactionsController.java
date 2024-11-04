@@ -5,7 +5,6 @@ import com.example.myfinance.Transaction.Transaction.Transactions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -20,11 +19,11 @@ public class TransactionsController {
     }
 
     @GetMapping(value = "", produces = "application/json")
-    public List<Transactions> getInfos(@RequestParam(required = false) Date minDate,
-                                       @RequestParam(required = false) Date maxDate){
+    public List<Transactions> getInfos(@RequestParam(required = false) String minDate,
+                                       @RequestParam(required = false) String maxDate){
         return transactionService.getInfos(minDate, maxDate);
     }
-    @PostMapping
+    @PostMapping(value = "", consumes = "application/json")
     public void addTransaction(@RequestBody Transactions transactions){
         transactionService.addNewTransaction(transactions);
     }
