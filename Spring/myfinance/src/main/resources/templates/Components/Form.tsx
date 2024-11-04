@@ -8,18 +8,19 @@ interface FormProps {
 }
 
 const Form = ({ input }: FormProps) => {
-    const [list, setList] = useState<Transactions[]>([]);
+    const [list, setList] = useState<string>([]);
 
 
-    function addToList(transaction: Transactions) {
-        const newList = [...list, transaction];
+    function addToList(items: string) {
+        const newList = [...list, items];
         setList(newList);
         input(newList);
     }
 
     return (
         <div>
-            {/* Render the list or other components here */}
+            <input id="idinput" placeholder="Enter items"></input>
+            <button onClick={() => addToList((document.getElementById("idinput") as HTMLInputElement).value)}>Add</button>
         </div>
     );
 };
