@@ -41,7 +41,6 @@ MyFinance is a finance tracking application built with Spring Boot, allowing use
 - Java 17+
 - Maven or Gradle for dependency management
 - MySQL or any other relational database
-- Node.js (optional for frontend development)
 
 ### Running the Application
 
