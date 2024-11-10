@@ -62,10 +62,6 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
@@ -84,7 +80,6 @@
             <version>2.0.29</version>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>

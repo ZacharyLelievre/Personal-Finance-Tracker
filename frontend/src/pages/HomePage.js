@@ -14,7 +14,6 @@ export default function HomePage() {
                 <li><a href="/about">About</a></li>
             </ul>
 
-
             <div class="container">
                 <div class="overview">
                     <div class="card">

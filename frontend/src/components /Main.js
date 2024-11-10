@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-export default function Charts() {
+export default function Main() {
     const [transactionData, setTransactionData] = useState({
         totalIncome: 0,
         totalExpenses: 0,
