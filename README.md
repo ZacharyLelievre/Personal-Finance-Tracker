@@ -1,3 +1,4 @@
+# Work in Progress
 # MyFinance Application
 
 MyFinance is a finance tracking application built with Spring Boot, allowing users to securely manage their transactions with encrypted data storage, generate financial reports, and export them to PDF format.
